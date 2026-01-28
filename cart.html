@@ -1,158 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cart - Kumar Piyush Bookstore</title>
-    <style>
-      body {
-        font-family: "Poppins", sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f5f5f5;
-      }
 
-      nav {
-        background-color: #007bff;
-        padding: 10px;
-        text-align: center;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart - Kumar Piyush Bookstore</title>
+  <link rel="stylesheet" href="cart.css">
 
-      nav a {
-        color: white;
-        text-decoration: none;
-        margin: 0 15px;
-        font-size: 18px;
-      }
+</head>
 
-      .container {
-        width: 80%;
-        max-width: 350px;
-        height: auto; /* Allow height to adjust dynamically */
-        margin: 20px auto;
-        padding: 10px;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* Align elements properly */
-        align-items: center; /* Center everything */
-        gap: 5px; /* Reduce spacing */
-      }
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="checkout.html">Your Cart (<span id="cart-count">0</span>)</a>
+  </nav>
 
-      #book-image {
-        width: 100%;
-        height: auto; /* Maintain aspect ratio */
-        max-height: 250px; /* Adjust max height */
-        object-fit: contain; /* Ensure full image is visible */
-        margin-bottom: 5px;
-      }
+  <div class="container">
+    <img id="book-image" src="" alt="Book Image" />
+    <div class="title" id="book-title"></div>
+    <div class="price" id="book-price"></div>
+    <div class="description" id="book-description"></div>
+    <button class="cart-btn" onclick="addToCart(true)">Add to Cart</button>
+    <button onclick="buyNow()">Buy Now</button>
 
-      .title {
-        font-size: 18px;
-        font-weight: bold;
-        color: #333;
-        margin: 5px 0; /* Ensure spacing */
-        display: block; /* Ensure it's visible */
-      }
+  </div>
 
-      .price {
-        font-size: 16px;
-        color: #555;
-        margin: 2px 0;
-      }
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const selectedBook = JSON.parse(localStorage.getItem("selectedBook"));
 
-      .description {
-        font-size: 14px;
-        color: #666;
-        margin: 2px 0;
-      }
-
-      .cart-btn{
-        background-color: #28a745;
-        color: white;
-        border: none;
-        padding: 8px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-size: 14px;
-        margin-top: 5px;
-        width: 100%;
-      }
-      button {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 8px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-size: 14px;
-        margin-top: 5px;
-        width: 100%;
-      }
-
-      .cart-btn:hover,
-      button:hover {
-        background-color: #0056b3;
-      }
-    </style>
-  </head>
-  <body>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="checkout.html">Your Cart (<span id="cart-count">0</span>)</a>
-    </nav>
-
-    <div class="container">
-      <img id="book-image" src="" alt="Book Image" />
-      <div class="title" id="book-title"></div>
-      <div class="price" id="book-price"></div>
-      <div class="description" id="book-description"></div>
-      <button class="cart-btn" onclick="addToCart()">Add to Cart</button>
-      <button onclick="buyNow()">Buy Now</button>
-    </div>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const selectedBook = JSON.parse(localStorage.getItem("selectedBook"));
-
-        if (selectedBook) {
-          document.getElementById("book-image").src = selectedBook.image;
-          document.getElementById("book-title").textContent =
-            selectedBook.title;
-          document.getElementById(
-            "book-price"
-          ).textContent = `Price: ${selectedBook.price}`;
-          document.getElementById("book-description").textContent =
-            selectedBook.description;
-        }
-      });
-
-      function addToCart() {
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        const selectedBook = JSON.parse(localStorage.getItem("selectedBook"));
-
-        if (selectedBook) {
-          cart.push(selectedBook);
-          localStorage.setItem("cart", JSON.stringify(cart));
-          updateCartCount();
-          alert("Book added to cart!");
-        }
-      }
-
-      function buyNow() {
-        addToCart();
-        window.location.href = "checkout.html";
-      }
-
-      function updateCartCount() {
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        document.getElementById("cart-count").textContent = cart.length;
+      if (selectedBook) {
+        document.getElementById("book-image").src = selectedBook.image;
+        document.getElementById("book-title").textContent = selectedBook.title;
+        document.getElementById("book-price").textContent =
+          `Price: ${selectedBook.price}`;
+        document.getElementById("book-description").textContent =
+          selectedBook.description;
       }
 
       updateCartCount();
-    </script>
-  </body>
+    });
+
+    function addToCart(redirect = false) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const selectedBook = JSON.parse(localStorage.getItem("selectedBook"));
+
+      if (selectedBook) {
+        cart.push(selectedBook);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartCount();
+
+        alert("Book added to cart!");
+
+        if (redirect) {
+          window.location.href = "checkout.html";
+        }
+      }
+    }
+
+    function buyNow() {
+      addToCart(true);
+    }
+
+    function updateCartCount() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      document.getElementById("cart-count").textContent = cart.length;
+    }
+  </script>
+
+</body>
+
 </html>
