@@ -1,0 +1,93 @@
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+nav {
+    background-color: #007bff;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+}
+
+.container {
+    width: 80%;
+    max-width: 350px;
+    height: auto;
+    margin: 20px auto;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+#book-image {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin: 5px 0;
+    display: block;
+}
+
+.price {
+    font-size: 16px;
+    color: #555;
+    margin: 2px 0;
+}
+
+.description {
+    font-size: 14px;
+    color: #666;
+    margin: 2px 0;
+}
+
+.cart-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 5px;
+    width: 100%;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 5px;
+    width: 100%;
+}
+
+.cart-btn:hover,
+button:hover {
+    background-color: #0056b3;
+}
