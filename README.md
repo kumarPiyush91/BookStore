@@ -1,4 +1,6 @@
 # 📚 Kumar Piyush Bookstore
+<img width="965" height="588" alt="image" src="https://github.com/user-attachments/assets/5bf32d09-d780-44e2-ad1e-63b6cb90c072" />
+
 
 A personal online bookstore website where I showcase and sell my self-written books.  
 The project includes a cart system and PayPal payment integration for seamless checkout.
