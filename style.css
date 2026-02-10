@@ -64,10 +64,10 @@ main {
 .cover-image::after {
   content: "";
   position: absolute;
-  top: 0;
+  /* top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0; */
   background: rgba(0, 0, 0, 0.35);
 }
 
@@ -75,7 +75,7 @@ main {
 .section-title {
   text-align: center;
   font-size: 1.6rem;
-  margin: 30px 0 20px;
+  /* margin: 30px 0 20px; */
   color: #222;
 }
 
@@ -228,6 +228,13 @@ footer a:hover {
     padding: 6px 12px;
     align-self: flex-end;
   }
+  .section-title {
+  text-align: center;
+  font-size: 1.6rem;
+  
+  margin-top: -8rem;
+  color: #222;
+}
 }
 
 
@@ -247,6 +254,12 @@ footer a:hover {
     padding: 6px 10px;
     border-radius: 16px;
   }
+  .section-title {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-top: -8rem;
+  color: #222;
+}
 
  
   .cart-link::before {
